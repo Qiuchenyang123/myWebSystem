@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防抖</title>
+    <style>
+        .wrap{
+
+        }
+        .bg-container{
+            height: 500px;
+            margin: 50px auto;
+            background-color: rgba(43, 96, 255, 0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="container" class="bg-container">
+
+        </div>
+    </div>
+    <script>
+        function fn_fd(fn, time) {
+            var timer = null;
+            return function () {
+                var self = this;
+                var args = arguments;
+                clearTimeout(timer);
+                if (!timer) {
+                    fn.apply(self, args)
+                }
+                timer = setTimeout(function () {
+                    timer = null
+                }, time);
+            }
+        }
+        var myContainer = document.querySelector('#container');
+        function showClientX(e) {
+            this.innerHTML = e.clientX;
+        }
+        var fd_showClientX = fn_fd(showClientX, 1000)
+        myContainer.addEventListener('click', fd_showClientX, false)
+    </script>
+</body>
+</html>

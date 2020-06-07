@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据的双向绑定</title>
+
+</head>
+<body>
+    <div id="root">
+        123{{message}}321
+        <div>{{age}}</div>
+        <input v-model="test" type="text">
+        <p>{{test}}</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#root',
+            data: {
+                message: 'vue message',
+                age: 18,
+                test: '123'
+            }
+        })
+    </script>
+</body>
+</html>

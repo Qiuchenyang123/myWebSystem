@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节流</title>
+    <style>
+        .wrap{
+
+        }
+        .bg-container{
+            height: 500px;
+            margin: 50px auto;
+            background-color: rgba(43, 96, 255, 0.98);
+
+            color: #fff
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="container" class="bg-container">
+
+        </div>
+    </div>
+    <script>
+        function fn_jl(fn, time) {
+            var last = 0;
+            return function () {
+                var self = this;
+                var args = arguments;
+                var now = Date.now();
+                if (now - last > time) {
+                    fn.apply(self, args);
+                    last = now
+                }
+            }
+        }
+        var myContainer = document.querySelector('#container');
+        function showClientX(e) {
+            this.innerHTML = e.clientX;
+        }
+        var fd_showClientX = fn_jl(showClientX, 1000)
+        myContainer.addEventListener('click', fd_showClientX, false)
+    </script>
+</body>
+</html>
