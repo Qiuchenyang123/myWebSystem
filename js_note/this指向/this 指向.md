@@ -20,15 +20,15 @@ var a = {
 		console.log(this.b)
 	},
 	d: {
-		b: '345'
+		b: '345',
 		f: function() {
 			console.log(this.b)
 		}
 	}
 }
-a.c() // 234
-a.d.f() // 345
-var g = a.c;
+a.c(); // 234
+a.d.f(); // 345
+const g = a.c;
 g() // 123
 ```
 	* 【构造函数中的 this 指向的是实例对象】
@@ -38,8 +38,8 @@ g() // 123
 function Parent(name){
 	this.name = name
 }
-var Child = new Parent('Bob');
-child.prototype.getName = function() {
+const Child = new Parent('Bob');
+Child.prototype.getName = function() {
 	console.log(this.name)
 }
 /*
@@ -49,16 +49,24 @@ child.prototype.getName = function() {
 * 3、如果构造出来的函数没有返回值，则隐式返回 this 对象
 */
 ```
-	* 【如果构造函数中有 return，且 return 是对象类型的数值，则 this 指向返回的对象，如果 return 的数据不是对象类型，则 this 指向保持原来的规则，在这里，null 比较特殊，this 指向隐式声明的对象】
+
+* 【如果构造函数中有 return，且 return 是对象类型的数值，则 this 指向返回的对象，如果 return 的数据不是对象类型，则 this 指向保持原来的规则，在这里，null 比较特殊，this 指向隐式声明的对象】
 * 了解箭头函数中的 this 指向的特殊性
 	* 箭头函数与 function 函数的区别
 		1.箭头函数本身没有 this，箭头函数内部的 this 指向其所在的上下文环境，因此对象是不能形成独立的作用域的。
+		
 		2.箭头函数没有 arguments，要看参数只能用 ...rest 解构出来
+		
 		3.箭头函数没有 prototype
+		
 		4.箭头函数不能 new
+		
 		5.外形不同
+		
 		6.箭头函数都是匿名函数
+		
 		7.箭头函数不能声明 Generator 函数
+		
 		8.箭头函数不具有 super  
 * 改变 this 指向
 	* call，apply，bind 可以改变 this 指向 
