@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>堆栈内存</title>
+        <meta name="keywords" content="关键词">
+        <meta name="description" content="描述">
+        <meta name="author" content="情歌">
+        <style>
+            body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+            ol,ul,li{margin:0;padding:0;list-style:none;}
+            img{border:none;}
+        
+        </style>
+    </head>
+    <body>
+        <div id="wrap"></div>
+        
+        <script>
+            // exp1
+            let a1 = {}, b1 = "0", c1 = 0;
+            a1[b1] = '小b1';
+            a1[c1] = '小c1';
+            console.log('exp1', a1[b1]); // 小c1
+
+            // exp2
+            let a2 = {}, b2 = Symbol('1'), c2 = Symbol('1');
+            a2[b2] = '小b2';
+            a2[c2] = '小c2';
+            console.log('exp2', a2[b2]); // 小b2——Symbol值是唯一的
+
+            // exp3
+            let a3 = {}, b3 = {n: '1'}, c3 = {n: '2'};
+            a3[b3] = '小b3';
+            a3[c3] = '小c3';
+            console.log('exp3', a3[b3]); // 小b3 × 小c3
+
+            // 个人总结： []方法调用使用了 toString 方法
+
+        </script>
+    </body>
+</html>
