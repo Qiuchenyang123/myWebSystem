@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组扁平化处理</title>
+</head>
+<body>
+<script>
+    /*法1：ES6：Array.prototype.flat*/
+    // es6 自带数组扁平化函数，Array.prototype.flat
+    // flat里面传入一个数，如果为2则扁平化2级
+    // 如果要全部扁平化则可以输入infinity
+    var arr = [
+        [1, 2, 3],
+        [1, 1, 1],
+        [1, 2, [3, 4, 5, [1, 1, 1]]]
+    ];
+    /*arr = arr.flat(3);
+    console.log(arr);*/
+    /*法2：转化为字符串，再进行操作*/
+    // 1、arr.toString().split(',').map(item => parseFloat(item))
+    // 2、arr = JSON.stringify(arr).replace(/[\[|\]]/g, '')split(',').map(item => parseFloat(item))
+    /*法3：循环验证是否为数组*/
+    // 1、concat和[...arr]结合降级
+    while (arr.some(item => Array.isArray(item))) {
+        arr = [].concat(...arr)
+    }
+    console.log(arr);
+    // 2、正常循环判断递归
+</script>
+</body>
+</html>

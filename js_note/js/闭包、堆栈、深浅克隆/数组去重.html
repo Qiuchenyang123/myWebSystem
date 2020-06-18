@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组去重</title>
+</head>
+<body>
+<script>
+    /*
+    * 数组去重方案
+    * 1、利用Set对象
+    * ——[...new Set([1, 2, 34, 4, 56,3 ,2,3,])]
+    * 2、遍历数组，看数组中其他项中是否存在与当前项相等的
+    * 3、便利数组，将当前项在一个空对象中利用属性做一个标记，后面的项中如果存在相同项就可以在这个对象中体现出来，然后跳过或删除该项
+    * 4、先排序，再比较相邻项
+    * */
+    function filterDouble(arr) {
+        for (let i = 0; i< arr.length - 1; i ++) {
+            let item = arr[i],
+                newArr = arr.slice(i + 1);
+            if (newArr.indexOf(item) > -1) {
+                arr[i] = newArr[newArr.length - 1];
+                arr.length --;
+                console.log(16, newArr);
+                i --
+            }
+        }
+        return arr
+    }
+
+    console.log(filterDouble([12, 12, 12, 1, 12, 12, 21]))
+</script>
+</body>
+</html>
