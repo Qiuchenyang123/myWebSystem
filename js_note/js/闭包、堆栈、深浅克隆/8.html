@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8</title>
+</head>
+<body>
+<script>
+    var x = 2;
+    var y = {
+        x: 3,
+        z: (function (x) {
+            this.x *= x;
+            x += 2;
+            return function (n) {
+                this.x *= n;
+                x += 3;
+                console.log(x)
+            }
+        })(x)
+    }
+    /*
+    * y = {
+    *   x: 6,
+    *   z: function (n) { // x = 4
+    *       this.x *= n;
+    *       x += 3;
+    *       console.log(x)
+    *    }
+    * }
+    * y.z = function (n) {
+    *   this.x *= n;
+    *   x += 3;
+    *   console.log(x)
+    * }
+    * */
+    var m = y.z;
+    m(4); // 7
+    y.z(5); // 10
+    console.log(x, y.x) // 16 15
+
+    // 闭包 + this 指向
+</script>
+</body>
+</html>

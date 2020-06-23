@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6</title>
+</head>
+<body>
+    <div id="wrap">
+
+    </div>
+    <script>
+        async function async1() {
+            console.log('async1 start');
+            await async2();
+            console.log('async1 end')
+        }
+        async function async2() {
+            console.log('async2')
+        }
+
+        console.log('script start');
+        setTimeout(() => {
+            console.log('setTimeout')
+        }, 0)
+        async1();
+        new Promise(resolve => {
+            console.log('promise1');
+            resolve()
+        }).then(() => {
+            console.log('promise2');
+        })
+        console.log('script end');
+
+        /*
+        * script start
+        * async1 start
+        * promise1
+        * script end
+        * async2
+        * async1 end
+        * promise2
+        * setTimeout
+        * */
+    </script>
+
+</body>
+</html>

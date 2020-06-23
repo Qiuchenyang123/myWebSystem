@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7</title>
+</head>
+<body>
+        <div id="wrap">
+
+        </div>
+        <script>
+            function A() {
+                alert(1)
+            }
+            function Func() {
+                A = function () {
+                    alert(2)
+                }
+                return this;
+            }
+            Func.A = A;
+            Func.prototype = {
+                A: () => {
+                    alert(3)
+                }
+            };
+            // A(); // "1"
+            // Func.A(); // "1"
+            // Func().A(); // "2"
+            // new Func.A(); // "1"
+            // new Func().A();  // "3"
+            new new Func().A(); // 箭头函数不能被 new
+        </script>
+</body>
+</html>
